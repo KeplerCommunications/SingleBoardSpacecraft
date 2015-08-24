@@ -24,17 +24,15 @@
 	*	None so far.
 	*
 */
-
+#include "config.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "LED.h"
-#include "Timer.h"
-#include "spi_lib.h"
-#include "trans_lib.h"
-#include "uart_lib.h"
+#include <util/delay.h>
+#include "led.h"
+#include "uart.h"
 
 /* Function Prototypes for functions in this file */
-static void io_init(void);
+//static void io_init(void);
 static void sys_init(void);
 /**************************************************/
 
@@ -46,20 +44,22 @@ int main(void)
 {		
 	// Initialize I/O, Timer, ADC, CAN, and SPI
 	sys_init();
+	led_init();
+	uart_init();
+	
 	/*		Begin Main Program Loop					*/	
-    while(1)
-    {		
-		/*		TRANSCEIVER COMMUNICATION	*/
-		trans_check();
-		
-		if(msg_received)
-		{
-			// Do stuff with the message in trans_msg[].
-			
-			// Send the message to laptop via UART
+    while(1){	
+		led_toggle(1);
+		_delay_ms(100);		
+		led_toggle(2);
+		_delay_ms(200);
+		if (uart_index){
+			uint8_t i;
+			for (i = 0; i < uart_index; i++){
+				uart_transmit(uart_buffer[i]+1);
+			}
+			uart_index -= i;
 		}
-		uart_check();
-		
 	}
 }
 
@@ -69,37 +69,22 @@ void sys_init(void)
 	CLKPR = 0x80;  
 	CLKPR = 0x00;
 	
-	io_init();	
+	//io_init();	
 	
-	timer_init();
-	spi_initialize_master();
-	uart_initialize();
+	//timer_init();
+	//spi_initialize_master();
+	//uart_initialize();
 	
 	// Enable global interrupts for Timer execution
-	sei();
+	//sei();
 	
-	transceiver_initialize();
+	//transceiver_initialize();
 	
-	SS1_set_high();		// SPI Temp Sensor.
+	//SS1_set_high();		// SPI Temp Sensor.
 	
-	LED_toggle(LED7);
+	//LED_toggle(LED7);
+	//LED_set(LED1);
+	//LED_set(LED2);
+	//LED_set(LED3);
+	//PORTD &= ~(1<<1);
 }
-
-void io_init(void) 
-{	
-	// Init PORTB[7:0] // LED port
-	DDRB = 0xFE;
-	
-	// Init PORTC[7:0] // PORTC[3:2] => RXCAN:TXCAN
-	DDRC = 0x11;		// PC0 = SS for SPI with transceiver.
-	PORTC = 0x00;
-	
-	// Init PORTD[7:0]
-	DDRD = 0x09;		// PD3 = TXLIN, PD4 = RXLIN
-	PORTD = 0x01;		// PD3 should only go low during an SPI message.
-	
-	// Init PORTE[2:0]
-	DDRE = 0x00;
-	PORTE = 0x00;
-}
-

@@ -4,54 +4,36 @@ c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-t
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32m1.o (exit)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
                               main.o (__do_clear_bss)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+                              uart.o (__adddi3_s8)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+                              uart.o (__cmpdi2_s8)
 
 Allocating common symbols
 Common symbol       size              file
 
-msg_received        0x1               main.o
-uart_command        0x19              main.o
-uart_buflen         0x1               main.o
 msg                 0x2               main.o
-uart_buffer         0x19              main.o
-trans_msg           0x6               main.o
-uart_listen         0x1               main.o
 CTC_flag            0x1               main.o
-uart_comlen         0x1               main.o
 status              0x1               main.o
 
 Discarded input sections
 
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32m1.o
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32m1.o
- .text          0x00000000        0x0 LED.o
- .data          0x00000000        0x0 LED.o
- .bss           0x00000000        0x0 LED.o
- .text.LED_Reg_Write
-                0x00000000        0x6 LED.o
- .text.LED_set  0x00000000       0x2a LED.o
- .text.LED_clr  0x00000000       0x28 LED.o
+ .text          0x00000000        0x0 led.o
+ .data          0x00000000        0x0 led.o
+ .bss           0x00000000        0x0 led.o
+ .text.led_clr  0x00000000       0x12 led.o
+ .text.led_set  0x00000000       0x12 led.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text          0x00000000        0x0 spi_lib.o
- .data          0x00000000        0x0 spi_lib.o
- .bss           0x00000000        0x0 spi_lib.o
- .text.SS1_set_low
-                0x00000000        0x4 spi_lib.o
- .text.spi_retrieve_temp
-                0x00000000       0x3a spi_lib.o
- .text          0x00000000        0x0 Timer.o
- .data          0x00000000        0x0 Timer.o
- .bss           0x00000000        0x0 Timer.o
- .text          0x00000000        0x0 trans_lib.o
- .data          0x00000000        0x0 trans_lib.o
- .bss           0x00000000        0x0 trans_lib.o
- .text.dir_FIFO_write
-                0x00000000       0x46 trans_lib.o
- .text.set_CSn  0x00000000       0x10 trans_lib.o
- .text          0x00000000        0x0 uart_lib.o
- .data          0x00000000        0x0 uart_lib.o
- .bss           0x00000000        0x0 uart_lib.o
+ COMMON         0x00000000        0x4 main.o
+ .text          0x00000000        0x0 uart.o
+ .data          0x00000000        0x0 uart.o
+ .bss           0x00000000        0x0 uart.o
+ .text.uart_receive
+                0x00000000       0x78 uart.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
@@ -84,6 +66,36 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.mul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.div
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.prologue
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.builtins
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.fmul
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+ .text.libgcc.fixed
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
 
 Memory Configuration
 
@@ -101,12 +113,9 @@ Linker script and memory map
 
 Address of section .data set to 0x800100
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32m1.o
-LOAD LED.o
+LOAD led.o
 LOAD main.o
-LOAD spi_lib.o
-LOAD Timer.o
-LOAD trans_lib.o
-LOAD uart_lib.o
+LOAD uart.o
 START GROUP
 LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libm.a
 END GROUP
@@ -206,7 +215,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x7f8
+.text           0x00000000      0x26c
  *(.vectors)
  .vectors       0x00000000       0x7c c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32m1.o
                 0x00000000                __vector_default
@@ -265,6 +274,7 @@ END GROUP
                 0x000000a0                __vector_28
                 0x000000a0                __vector_1
                 0x000000a0                __vector_24
+                0x000000a0                __vector_12
                 0x000000a0                __bad_interrupt
                 0x000000a0                __vector_6
                 0x000000a0                __vector_3
@@ -290,105 +300,34 @@ END GROUP
                 0x000000a0                __vector_10
                 0x000000a0                __vector_16
                 0x000000a0                __vector_18
-                0x000000a0                __vector_20
                 0x000000a4                . = ALIGN (0x2)
  *(.text.*)
- .text.LED_toggle
-                0x000000a4       0x36 LED.o
-                0x000000a4                LED_toggle
- .text.main     0x000000da       0x64 main.o
-                0x000000da                main
- .text.spi_initialize_master
-                0x0000013e        0xc spi_lib.o
-                0x0000013e                spi_initialize_master
- .text.spi_transfer
-                0x0000014a       0x1a spi_lib.o
-                0x0000014a                spi_transfer
- .text.SS_set_high
-                0x00000164        0xa spi_lib.o
-                0x00000164                SS_set_high
- .text.spi_transfer2
-                0x0000016e       0x30 spi_lib.o
-                0x0000016e                spi_transfer2
- .text.SS1_set_high
-                0x0000019e        0x4 spi_lib.o
-                0x0000019e                SS1_set_high
- .text.SS_set_low
-                0x000001a2        0xa spi_lib.o
-                0x000001a2                SS_set_low
- .text.__vector_12
-                0x000001ac       0x1e Timer.o
-                0x000001ac                __vector_12
- .text.timer_init
-                0x000001ca       0x10 Timer.o
-                0x000001ca                timer_init
- .text.delay_us
-                0x000001da       0x24 Timer.o
-                0x000001da                delay_us
- .text.delay_ms
-                0x000001fe       0x2c Timer.o
-                0x000001fe                delay_ms
- .text.delay_cycles
-                0x0000022a        0xe Timer.o
-                0x0000022a                delay_cycles
- .text.reg_read
-                0x00000238       0x32 trans_lib.o
-                0x00000238                reg_read
- .text.reg_write
-                0x0000026a       0x32 trans_lib.o
-                0x0000026a                reg_write
- .text.reg_read2F
-                0x0000029c       0x3e trans_lib.o
-                0x0000029c                reg_read2F
- .text.cmd_str  0x000002da       0x16 trans_lib.o
-                0x000002da                cmd_str
- .text.reg_write2F
-                0x000002f0       0x46 trans_lib.o
-                0x000002f0                reg_write2F
- .text.get_status
-                0x00000336       0x1a trans_lib.o
-                0x00000336                get_status
- .text.dir_FIFO_read
-                0x00000350       0x44 trans_lib.o
-                0x00000350                dir_FIFO_read
- .text.reg_write_bit
-                0x00000394       0x4e trans_lib.o
-                0x00000394                reg_write_bit
- .text.reg_write_bit2F
-                0x000003e2       0x4e trans_lib.o
-                0x000003e2                reg_write_bit2F
- .text.transceiver_initialize
-                0x00000430      0x17a trans_lib.o
-                0x00000430                transceiver_initialize
- .text.trans_check
-                0x000005aa       0x84 trans_lib.o
-                0x000005aa                trans_check
- .text.uart_send
-                0x0000062e       0x4a uart_lib.o
-                0x0000062e                uart_send
- .text.uart_read
-                0x00000678       0x1c uart_lib.o
-                0x00000678                uart_read
- .text.uart_clear_buff
-                0x00000694       0x16 uart_lib.o
-                0x00000694                uart_clear_buff
- .text.uart_clear_command
-                0x000006aa       0x16 uart_lib.o
-                0x000006aa                uart_clear_command
- .text.uart_initialize
-                0x000006c0       0x1a uart_lib.o
-                0x000006c0                uart_initialize
- .text.uart_read_command
-                0x000006da       0x86 uart_lib.o
-                0x000006da                uart_read_command
- .text.uart_check
-                0x00000760       0x94 uart_lib.o
-                0x00000760                uart_check
-                0x000007f4                . = ALIGN (0x2)
+ .text.led_init
+                0x000000a4        0x6 led.o
+                0x000000a4                led_init
+ .text.led_toggle
+                0x000000aa       0x1e led.o
+                0x000000aa                led_toggle
+ .text.main     0x000000c8       0x80 main.o
+                0x000000c8                main
+ .text.__vector_20
+                0x00000148       0x42 uart.o
+                0x00000148                __vector_20
+ .text.uart_init
+                0x0000018a       0x2e uart.o
+                0x0000018a                uart_init
+ .text.uart_transmit
+                0x000001b8       0x80 uart.o
+                0x000001b8                uart_transmit
+ .text.libgcc   0x00000238       0x18 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_adddi3_s8.o)
+                0x00000238                __adddi3_s8
+ .text.libgcc   0x00000250       0x18 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_cmpdi2_s8.o)
+                0x00000250                __cmpdi2_s8
+                0x00000268                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000007f4        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
-                0x000007f4                _exit
-                0x000007f4                exit
+ .fini9         0x00000268        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+                0x00000268                _exit
+                0x00000268                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -407,11 +346,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000007f4        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000268        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000007f8                _etext = .
+                0x0000026c                _etext = .
 
-.data           0x00800100        0x0 load address 0x000007f8
+.data           0x00800100        0x0 load address 0x0000026c
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -422,32 +361,30 @@ END GROUP
                 0x00800100                _edata = .
                 0x00800100                PROVIDE (__data_end, .)
 
-.bss            0x00800100       0x40
+.bss            0x00800100      0x202
                 0x00800100                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.uart_overflow
+                0x00800100        0x1 uart.o
+                0x00800100                uart_overflow
+ .bss.uart_index
+                0x00800101        0x1 uart.o
+                0x00800101                uart_index
+ .bss.uart_buffer
+                0x00800102      0x200 uart.o
+                0x00800102                uart_buffer
  *(COMMON)
- COMMON         0x00800100       0x40 main.o
-                0x00800100                msg_received
-                0x00800101                uart_command
-                0x0080011a                uart_buflen
-                0x0080011b                msg
-                0x0080011d                uart_buffer
-                0x00800136                trans_msg
-                0x0080013c                uart_listen
-                0x0080013d                CTC_flag
-                0x0080013e                uart_comlen
-                0x0080013f                status
-                0x00800140                PROVIDE (__bss_end, .)
-                0x000007f8                __data_load_start = LOADADDR (.data)
-                0x000007f8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800302                PROVIDE (__bss_end, .)
+                0x0000026c                __data_load_start = LOADADDR (.data)
+                0x0000026c                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800140        0x0
-                0x00800140                PROVIDE (__noinit_start, .)
+.noinit         0x00800302        0x0
+                0x00800302                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800140                PROVIDE (__noinit_end, .)
-                0x00800140                _end = .
-                0x00800140                PROVIDE (__heap_start, .)
+                0x00800302                PROVIDE (__noinit_end, .)
+                0x00800302                _end = .
+                0x00800302                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -488,13 +425,10 @@ END GROUP
 
 .comment        0x00000000       0x30
  *(.comment)
- .comment       0x00000000       0x30 LED.o
+ .comment       0x00000000       0x30 led.o
                                  0x31 (size before relaxing)
  .comment       0x00000000       0x31 main.o
- .comment       0x00000000       0x31 spi_lib.o
- .comment       0x00000000       0x31 Timer.o
- .comment       0x00000000       0x31 trans_lib.o
- .comment       0x00000000       0x31 uart_lib.o
+ .comment       0x00000000       0x31 uart.o
 
 .note.gnu.build-id
  *(.note.gnu.build-id)
@@ -511,82 +445,56 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x1c0
+.debug_aranges  0x00000000       0x90
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x38 LED.o
+                0x00000000       0x38 led.o
  .debug_aranges
                 0x00000038       0x20 main.o
  .debug_aranges
-                0x00000058       0x58 spi_lib.o
- .debug_aranges
-                0x000000b0       0x40 Timer.o
- .debug_aranges
-                0x000000f0       0x80 trans_lib.o
- .debug_aranges
-                0x00000170       0x50 uart_lib.o
+                0x00000058       0x38 uart.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1b70
+.debug_info     0x00000000      0x4d1
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x111 LED.o
- .debug_info    0x00000111      0x29d main.o
- .debug_info    0x000003ae      0x36b spi_lib.o
- .debug_info    0x00000719      0x16a Timer.o
- .debug_info    0x00000883      0xe75 trans_lib.o
- .debug_info    0x000016f8      0x478 uart_lib.o
+ .debug_info    0x00000000       0xf8 led.o
+ .debug_info    0x000000f8      0x272 main.o
+ .debug_info    0x0000036a      0x167 uart.o
 
-.debug_abbrev   0x00000000      0x842
+.debug_abbrev   0x00000000      0x340
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0x7a LED.o
- .debug_abbrev  0x0000007a      0x149 main.o
- .debug_abbrev  0x000001c3      0x19f spi_lib.o
- .debug_abbrev  0x00000362      0x102 Timer.o
- .debug_abbrev  0x00000464      0x21a trans_lib.o
- .debug_abbrev  0x0000067e      0x1c4 uart_lib.o
+ .debug_abbrev  0x00000000       0x9f led.o
+ .debug_abbrev  0x0000009f      0x1d4 main.o
+ .debug_abbrev  0x00000273       0xcd uart.o
 
-.debug_line     0x00000000      0x80f
+.debug_line     0x00000000      0x353
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000       0xe6 LED.o
- .debug_line    0x000000e6      0x106 main.o
- .debug_line    0x000001ec      0x151 spi_lib.o
- .debug_line    0x0000033d      0x115 Timer.o
- .debug_line    0x00000452      0x22f trans_lib.o
- .debug_line    0x00000681      0x18e uart_lib.o
+ .debug_line    0x00000000       0xe0 led.o
+ .debug_line    0x000000e0      0x16d main.o
+ .debug_line    0x0000024d      0x106 uart.o
 
-.debug_frame    0x00000000      0x3c4
+.debug_frame    0x00000000      0x134
  *(.debug_frame)
- .debug_frame   0x00000000       0x54 LED.o
+ .debug_frame   0x00000000       0x54 led.o
  .debug_frame   0x00000054       0x24 main.o
- .debug_frame   0x00000078       0xb0 spi_lib.o
- .debug_frame   0x00000128       0x88 Timer.o
- .debug_frame   0x000001b0      0x164 trans_lib.o
- .debug_frame   0x00000314       0xb0 uart_lib.o
+ .debug_frame   0x00000078       0xbc uart.o
 
-.debug_str      0x00000000      0x4c0
+.debug_str      0x00000000      0x235
  *(.debug_str)
- .debug_str     0x00000000      0x153 LED.o
-                                0x187 (size before relaxing)
- .debug_str     0x00000153      0x13f main.o
-                                0x255 (size before relaxing)
- .debug_str     0x00000292       0xb2 spi_lib.o
-                                0x232 (size before relaxing)
- .debug_str     0x00000344       0x19 Timer.o
-                                0x1af (size before relaxing)
- .debug_str     0x0000035d       0xbd trans_lib.o
-                                0x29d (size before relaxing)
- .debug_str     0x0000041a       0xa6 uart_lib.o
-                                0x279 (size before relaxing)
+ .debug_str     0x00000000      0x144 led.o
+                                0x178 (size before relaxing)
+ .debug_str     0x00000144       0xad main.o
+                                0x20a (size before relaxing)
+ .debug_str     0x000001f1       0x44 uart.o
+                                0x1c5 (size before relaxing)
 
-.debug_loc      0x00000000      0xf98
+.debug_loc      0x00000000      0x20a
  *(.debug_loc)
- .debug_loc     0x00000000       0x9d LED.o
- .debug_loc     0x0000009d      0x27b spi_lib.o
- .debug_loc     0x00000318      0x130 Timer.o
- .debug_loc     0x00000448      0x769 trans_lib.o
- .debug_loc     0x00000bb1      0x3e7 uart_lib.o
+ .debug_loc     0x00000000       0x3a led.o
+ .debug_loc     0x0000003a       0x2b main.o
+ .debug_loc     0x00000065      0x1a5 uart.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -606,14 +514,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x160
+.debug_ranges   0x00000000       0x78
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x28 LED.o
- .debug_ranges  0x00000028       0x10 main.o
- .debug_ranges  0x00000038       0x48 spi_lib.o
- .debug_ranges  0x00000080       0x30 Timer.o
- .debug_ranges  0x000000b0       0x70 trans_lib.o
- .debug_ranges  0x00000120       0x40 uart_lib.o
+ .debug_ranges  0x00000000       0x28 led.o
+ .debug_ranges  0x00000028       0x28 main.o
+ .debug_ranges  0x00000050       0x28 uart.o
 
 .debug_macro
  *(.debug_macro)
