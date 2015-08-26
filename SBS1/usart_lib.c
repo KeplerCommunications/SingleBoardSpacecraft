@@ -26,7 +26,7 @@
 	*	08/19/2015		Created.
 	*
 */
-#include "uart_lib.h"
+#include "usart_lib.h"
 
 /************************************************************************/
 /* UART INITIALIZE                                                      */
@@ -245,9 +245,9 @@ void uart_read_command(void)
 		msg_array[11] = 0x0A;	// line feed
 		msg_array[2] = 0x0D;	// carriage return
 		status = uart_send(response, (uint8_t)13);
-		LED_toggle(LED7);
+		led_toggle(LED1);
 		delay_ms(100);
-		LED_toggle(LED7);
+		led_toggle(LED1);
 		delay_ms(100);
 	}
 	

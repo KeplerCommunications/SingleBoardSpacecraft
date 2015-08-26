@@ -28,25 +28,20 @@
 	*	02/06/2015		Edited the header.
 	*
 */
-#ifndef LED_H_
-#define LED_H_
+#ifndef LED_H
+#define LED_H
 
-#define LEDPORT PORTB
-#define LED0 0
+/* LED Pin Mapping 
+ * 
+ *   LED1 PORTB6
+ *   LED2 PORTD0
+ */
 #define LED1 1
 #define LED2 2
-#define LED3 3
-#define LED4 4
-#define LED5 5
-#define LED6 6
-#define LED7 7
 
-void LED_Reg_Write(uint8_t val);
-void LED_set(uint8_t LED);
-void LED_clr(uint8_t LED);
-void LED_toggle(uint8_t LED);
-
-
+void led_set(uint8_t LED);
+void led_clr(uint8_t LED);
+void led_toggle(uint8_t LED);
 
 #endif /* LED_H_ */
 

@@ -29,50 +29,26 @@
 	*
 */
 #include <avr/io.h>
-#include "LED.h"
+#include "led.h"
 
-void LED_Reg_Write(uint8_t val) {
-	LEDPORT = ~val;
+void led_clr(uint8_t LED) {
+	switch(LED){
+		case 1: PORTB &= ~(1<<PB6); break;
+		case 2: PORTD &= ~(1<<PD0); break;
+	}
 }
 
-void LED_set(uint8_t LED) {
-	
-	if(LED == 7)
-	{
-		PORTD &= ~(0x01);
+void led_set(uint8_t LED) {
+	switch(LED){
+		case 1: PORTB |= 1<<PB6;  break;
+		case 2: PORTD |= 1<<PD0;  break;
 	}
-	if(LED == 3)
-	{
-		PORTC &= ~(0x01);
-	}
-
-	LEDPORT &= ~(1 << LED);
 }
 
-void LED_clr(uint8_t LED) {
-	
-	if(LED == 7)
-	{
-		PORTD |= 0x01;
+void led_toggle(uint8_t LED) {
+	switch(LED){
+		case 1: PORTB ^= 1<<PB6; break;
+		case 2: PORTD ^= 1<<PD0; break;
 	}
-	if(LED == 3)
-	{
-		PORTC |= 0x01;
-	}
-	LEDPORT |= (1 << LED);
-}
-
-void LED_toggle(uint8_t LED) {
-	
-	if(LED == 7)
-	{
-		PORTD ^= 0x01;
-	}
-	if(LED == 3)
-	{
-		PORTC ^= 0x01;
-	}
-	else
-		LEDPORT ^= (1 << LED);
 }
 

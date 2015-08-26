@@ -24,17 +24,15 @@
 	*	None so far.
 	*
 */
-
+#include "config.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "LED.h"
-#include "Timer.h"
-#include "spi_lib.h"
-#include "trans_lib.h"
-#include "uart_lib.h"
+#include <util/delay.h>
+#include "led.h"
+#include "uart.h"
 
 /* Function Prototypes for functions in this file */
-static void io_init(void);
+//static void io_init(void);
 static void sys_init(void);
 /**************************************************/
 
@@ -46,20 +44,24 @@ int main(void)
 {		
 	// Initialize I/O, Timer, ADC, CAN, and SPI
 	sys_init();
+
+	
 	/*		Begin Main Program Loop					*/	
     while(1)
-    {		
-		/*		TRANSCEIVER COMMUNICATION	*/
-		trans_check();
+	{	
+		led_toggle(LED2);
+		delay_ms(100);		
+		led_toggle(LED2);
+		delay_ms(100);
 		
-		if(msg_received)
+		if(blinking)
 		{
-			// Do stuff with the message in trans_msg[].
-			
-			// Send the message to laptop via UART
+			led_toggle(LED1);
+			delay_ms(100);
+			led_toggle(LED1);
+			delay_ms(100);
+			blinking = 0;
 		}
-		uart_check();
-		
 	}
 }
 
@@ -73,33 +75,29 @@ void sys_init(void)
 	
 	timer_init();
 	spi_initialize_master();
-	uart_initialize();
-	
-	// Enable global interrupts for Timer execution
 	sei();
-	
 	transceiver_initialize();
 	
-	SS1_set_high();		// SPI Temp Sensor.
+	uart_init();
+
+	// Enable global interrupts for Timer execution
+
 	
-	LED_toggle(LED7);
+
+	
+	
+	return;
 }
 
-void io_init(void) 
-{	
-	// Init PORTB[7:0] // LED port
-	DDRB = 0xFE;
+void io_init(void)
+{
+	// LEDs
+	DDRB |= (1<<6);
+	DDRD |= 1;
 	
-	// Init PORTC[7:0] // PORTC[3:2] => RXCAN:TXCAN
-	DDRC = 0x11;		// PC0 = SS for SPI with transceiver.
-	PORTC = 0x00;
+	// UART Pins
+	DDRD |= 1<<3;	 // PD3 = TXD is output
+	DDRD &= ~(1<<4); // PD4 = RXD is input
 	
-	// Init PORTD[7:0]
-	DDRD = 0x09;		// PD3 = TXLIN, PD4 = RXLIN
-	PORTD = 0x01;		// PD3 should only go low during an SPI message.
-	
-	// Init PORTE[2:0]
-	DDRE = 0x00;
-	PORTE = 0x00;
+	return;
 }
-
