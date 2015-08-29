@@ -29,24 +29,18 @@
 #ifndef UART_H
 #define UART_H
 
-#define UART_BUFF_LEN	255
+#define UART_BUFF_LEN	512
 extern volatile uint8_t uart_buffer[UART_BUFF_LEN];
 extern volatile uint8_t uart_index;
 extern volatile uint8_t uart_overflow;
-
-uint8_t uart_command[UART_BUFF_LEN];
-uint8_t uart_buflen;				// This variable is used to store the current length of the uart buffer.
-uint8_t uart_comlen;				// This variable is used to store the current length of the uart command.
-uint8_t uart_listen;				// This flag is used to determine whether or not subsequent UART bytes correspond to a command.
-uint8_t blinking;
 
 
 /* Function Prototypes	*/
 void uart_init(void);
 uint8_t uart_transmit(uint8_t msg);
 uint8_t uart_receive(void);
-void uart_clear_buff(void);
-void uart_clear_command(void);
-void uart_read_command(void);
+uint8_t uart_sendmsg(char* msg);
+void uart_debug();
+void uart_printf(char* format, ...);
 
 #endif

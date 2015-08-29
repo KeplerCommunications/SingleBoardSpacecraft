@@ -6,11 +6,11 @@ led.c
 
 main.c
 
-spi_lib.c
+spi.c
 
-Timer.c
-
-trans_lib.c
+transceiver.c
 
 uart.c
+
+wdt.c
 

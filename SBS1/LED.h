@@ -42,6 +42,7 @@
 void led_set(uint8_t LED);
 void led_clr(uint8_t LED);
 void led_toggle(uint8_t LED);
+void led_init();
 
 #endif /* LED_H_ */
 

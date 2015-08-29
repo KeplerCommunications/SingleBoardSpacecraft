@@ -1,0 +1,9 @@
+*.d
+*.hex
+*.o
+*.atsuo
+*.o
+*.elf
+*.lss
+*.lss
+SBS1/Debug/Subsystem_Program.map

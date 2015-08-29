@@ -27,6 +27,9 @@
 */
 #include "config.h"
 #include <avr/io.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdarg.h>
 #include <avr/interrupt.h>
 #include "uart.h"
 #include "led.h"
@@ -35,43 +38,19 @@ volatile uint8_t uart_buffer[UART_BUFF_LEN] = {0};
 volatile uint8_t uart_index = 0;
 volatile uint8_t uart_overflow = 0;
 
-ISR (LIN_TC_vect)
-{	
-	uint8_t msg, i;
-	
-	msg = LINDAT;	// Incoming UART message.
-	uart_overflow = uart_index >= UART_BUFF_LEN;
+#if UART_DISABLE
+	uint8_t uart_receive (void){ return 0; }
+	void uart_init(void){}
+	uint8_t uart_transmit (uint8_t msg) { return 0; }
+	uint8_t uart_sendmsg(char* msg) { return 0; }
+	void uart_debug(){return;}
+	void uart_printf(char* format, ...){ return; }
+#else
 
-	if(msg == 0x32)		// 0x32 == '2' in ASCII.
-	{
-		uart_listen = 0;
-		for(i = 0; i < uart_index; i ++)
-		{
-			uart_command[i] = uart_buffer[i];
-		}
-		uart_comlen = uart_buflen;
-		uart_clear_buff();
-		uart_read_command();
-	}
-		
-	if (uart_listen)
-	{
-		uart_buffer[uart_index] = msg;
-		if (uart_index == (UART_BUFF_LEN - 1))
-		{
-			uart_clear_buff();		// A message overflow has occurred, empty the buffer.
-			return;
-		}
-		uart_index++;
-	}
-		
-	if(msg == 0x31)		// 0x31 == '1' in ASCII.
-	{
-		uart_listen = 1;
-		uart_clear_buff();
-	}
-	
-	return;
+ISR (LIN_TC_vect){
+	uart_buffer[uart_index] = LINDAT;
+	uart_index++;
+	uart_overflow = uart_index >= UART_BUFF_LEN;
 }
 
 /************************************************************************/
@@ -81,8 +60,11 @@ ISR (LIN_TC_vect)
 /* communication.														*/
 /************************************************************************/
 
-void uart_init(void)
-{	
+void uart_init(void){
+	// initialize chip
+	DDRD |= 1<<3;	 // PD3 = TXD is output
+	DDRD &= ~(1<<4); // PD4 = RXD is input
+	
 	// Initialize UART Registers
 	LINCR = (1 << LSWRES);                    // Software reset
 	LINBRRH = (((F_CPU/UART_BAUD)/16)-1)>>8;  // Baudrate top 8 bits
@@ -91,121 +73,44 @@ void uart_init(void)
 	LINCR = (1<<LENA)|(1<<LCMD2)|(1<<LCMD1)|(1<<LCMD0); // Turn on UART for full duplex
 	LINENIR = 0b00000001;                     // Set the ISR flags for just the receive
 	LINSIR = 0b00000001;
-	uart_clear_buff();
-	uart_clear_command();
-	uart_listen = 0;
-	blinking = 0;
-	
 	sei();
 }
 
- uint8_t uart_transmit (uint8_t msg) {
-	 uint64_t timeout = F_CPU*30;
-	 while ((LINSIR & (1 << LBUSY)) && (timeout--)); // Wait while the UART is busy.
-	 LINDAT = msg;
-	 return 0;
- }
+uint8_t uart_transmit (uint8_t msg){
+	uint64_t timeout = F_CPU*30;
+	while ((LINSIR & (1 << LBUSY)) && (timeout--)); // Wait while the UART is busy.
+	LINDAT = msg;
+	return 0;
+}
 
- uint8_t uart_receive (void) {
-	 uint64_t timeout = F_CPU*30;
-	 while ((LINSIR & (1 << LBUSY)) && (timeout--)); // Wait while the UART is busy.
-	 return LINDAT;
- }
- 
- /************************************************************************/
- /* UART CLEAR BUFF                                                      */
- /*																		*/
- /* @purpose: This function is clears the buffer usart_buffer[]			*/
- /************************************************************************/
- void uart_clear_buff(void)
- {
-	 uint8_t i;
-	 
-	 for (i = 0; i < UART_BUFF_LEN; i ++)
-	 {
-		 uart_buffer[i] = 0;
-	 }
-	 
-	 uart_buflen = 0;
-	 
-	 return;
- }
+uint8_t uart_sendmsg(char* msg){
+	led_toggle(1);
+	for (int i = 0; i < strlen(msg); i++)
+		uart_transmit(msg[i]);
+	return 0;
+}
 
- /************************************************************************/
- /* UART CLEAR COMMAND                                                   */
- /*																		*/
- /* @purpose: This function is clears the buffer usart_command[]			*/
- /************************************************************************/
- void uart_clear_command(void)
- {
-	 uint8_t i;
-	 
-	 for (i = 0; i < UART_BUFF_LEN; i ++)
-	 {
-		 uart_command[i] = 0;
-	 }
-	 
-	 uart_comlen = 0;
-	 
-	 return;
- }
+uint8_t uart_receive (void){
+	uint64_t timeout = F_CPU*30;
+	while ((LINSIR & (1 << LBUSY)) && (timeout--)); // Wait while the UART is busy.
+	return LINDAT;
+}
 
- /************************************************************************/
- /* USART READ COMMAND                                                   */
- /*																		*/
- /* @purpose: This function checks whether the command which is stored in*/
- /* usart_command[] is one that needs to be acted upon. It then either	*/
- /* blinks an LED or sets a flag so that an action may be performed		*/
- /* elsewhere.															*/
- /************************************************************************/
+void uart_printf(char* format, ... ){
+	va_list args;
+	va_start(args, format);
+	char sendBuffer[128] = {0};
+	int numWrite = vsnprintf(sendBuffer, 128, format, args);
+	va_end(args);
+	if (numWrite < 0 || numWrite >= 128){
+		uart_sendmsg("Error formatted string too large (uart_printf)\n");
+		return;
+	}
+	uart_sendmsg(sendBuffer);
+}
 
- void uart_read_command(void)
- {
-	 uint8_t i, blink = 1, status;
-	 uint8_t check_array[25];
-	 uint8_t msg_array[10];
-	 uint8_t* response;
-	 
-	 // "BLINK"
-	 check_array[0] = 0x42;
-	 check_array[1] = 0x4C;
-	 check_array[2] = 0x49;
-	 check_array[3] = 0x4E;
-	 check_array[4] = 0x4B;
-	 
-	 for(i = 0; i < 5; i ++)
-	 {
-		 if(check_array[i] != uart_command[i])
-		 blink = 0;
-	 }
-	 
-	 if(blink)	// "BLINK" was sent!
-	 {
-		 msg_array[0] = 0x0A;	// line feed
-		 msg_array[1] = 0x0D;	// carriage return
-		 msg_array[2] = 0x42;	// msg_array == "\n\rBLINKING!\n\r"
-		 msg_array[3] = 0x4C;
-		 msg_array[4] = 0x49;
-		 msg_array[5] = 0x4E;
-		 msg_array[6] = 0x4B;
-		 msg_array[7] = 0x49;
-		 msg_array[8] = 0x4E;
-		 msg_array[9] = 0x47;
-		 msg_array[10] = 0x21;
-		 msg_array[11] = 0x0A;	// line feed
-		 msg_array[12] = 0x0D;	// carriage return
-		 
-		 for (i = 0; i < 13 ; i ++)
-		 {
-			 status = uart_transmit(msg_array[i]);
-		 }
-		 
-		 blinking = 1;
-	 }
-	 
-	 // Add other possible commands below!
-	 
-	 uart_clear_command();
-	 
-	 return;
- }
+void uart_debug(){
+	uart_printf("UART Debug: index = %d, OVERFLOW = %d\n", uart_index, uart_overflow);
+}
+
+#endif

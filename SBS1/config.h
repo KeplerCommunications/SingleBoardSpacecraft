@@ -59,10 +59,11 @@ typedef uint8_t Bool;
     // -------------- CAN LIB CONFIGURATION
 #define CAN_BAUDRATE   250        // in kBit
 //#define CAN_BAUDRATE   CAN_AUTOBAUD
-#define UART_BAUD 9600
-
+#define UART_BAUD    9600
+#define UART_DISABLE 0
     // -------------- MISCELLANEOUS
-
+#define DEBUG_MODE 1
+#define TX_ONLY_MODE 0
 //_____ D E C L A R A T I O N S ________________________________________________
 
 #endif  // _CONFIG_H_

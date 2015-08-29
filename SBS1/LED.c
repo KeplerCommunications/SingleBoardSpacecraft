@@ -31,10 +31,17 @@
 #include <avr/io.h>
 #include "led.h"
 
+void led_init(){
+	DDRB |= (1<<6);
+	DDRD |= 1;
+	DDRC |= 1;
+}
+
 void led_clr(uint8_t LED) {
 	switch(LED){
 		case 1: PORTB &= ~(1<<PB6); break;
 		case 2: PORTD &= ~(1<<PD0); break;
+		case 3: PORTC &= ~(1<<PC0); break;
 	}
 }
 
@@ -42,6 +49,7 @@ void led_set(uint8_t LED) {
 	switch(LED){
 		case 1: PORTB |= 1<<PB6;  break;
 		case 2: PORTD |= 1<<PD0;  break;
+		case 3: PORTC |= 1<<PC0;  break;
 	}
 }
 
@@ -49,6 +57,7 @@ void led_toggle(uint8_t LED) {
 	switch(LED){
 		case 1: PORTB ^= 1<<PB6; break;
 		case 2: PORTD ^= 1<<PD0; break;
+		case 3: PORTC ^= 1<<PC0; break;
 	}
 }
 
